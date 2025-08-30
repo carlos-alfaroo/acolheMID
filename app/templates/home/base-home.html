@@ -6,25 +6,123 @@
     <title>{% block title %}acolheMID{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        * {
+          font-family: 'Josefin Sans';
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-      {% block header %}
-        <h1>Welcome to acolheMID</h1>
-      {% endblock %}
-    </header>
+{% block header %}
+<header class="bg-green-900 text-white fixed w-full top-0 z-50" role="banner">
+  <div class="flex items-center justify-between p-4">
 
-    <main>
-      {% block content %}
-        <h2>Home</h2>
-      {% endblock %}
-    </main>
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold">acolheMID</h1>
 
-    <footer>
-    {% block footer %}
-      <p>&copy; 2023 acolheMID</p>
-    {% endblock %}
-    </footer>
-</body>
-</html> 
+    <!-- Botones usuario y carrito siempre visibles -->
+    <div class="flex space-x-4 z-50">
+      <!-- Usuario -->
+      <a href="{{ url_for('auth.login') }}" id="user-btn" class="p-2 rounded hover:bg-green-700 transition-colors duration-300" aria-label="Usuario">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-white">
+          <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </a>
+
+      <!-- Carrito -->
+      <a href="#" aria-label="Carrito de compras" class="relative p-2 rounded hover:bg-green-700 transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-white">
+          <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.82 14h8.36c.58 0 1.09-.39 1.26-.94l2.97-9.23A1 1 0 0019.41 3H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 13.37 5.48 14 6.63 14h1.19z"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">0</span>
+      </a>
+    </div>
+
+    <!-- Botón de menú móvil -->
+    <button id="menu-btn" class="md:hidden ml-4 p-2 rounded hover:bg-green-700 focus:outline-none transition-colors duration-300 z-50" aria-label="Abrir menú">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú principal (Desktop) -->
+  <ul class="hidden md:flex justify-center space-x-6 bg-green-800 p-2" role="navigation" aria-label="Menú principal">
+    <li><a href="#home" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Inicio</a></li>
+    <li><a href="#us" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Nosotros</a></li>
+    <li><a href="#register" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Registro</a></li>
+    <li><a href="#doctors" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Doctores</a></li>
+    <li><a href="#news" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Noticias</a></li>
+  </ul>
+
+  <!-- Sidebar móvil -->
+  <div id="mobile-menu" class="fixed top-0 left-0 w-64 h-full bg-green-800 text-white transform -translate-x-full transition-transform duration-300 md:hidden z-50 p-6">
+    <ul class="flex flex-col space-y-4">
+      <li><a href="#home" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Inicio</a></li>
+      <li><a href="#us" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Nosotros</a></li>
+      <li><a href="#register" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Registro</a></li>
+      <li><a href="#doctors" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Doctores</a></li>
+      <li><a href="#news" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Noticias</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Abrir menú
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('-translate-x-full');
+  });
+
+  // Cerrar tocando fuera del menú
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      mobileMenu.classList.add('-translate-x-full');
+    }
+  });
+
+  // Cerrar con swipe
+  let startX = 0;
+  mobileMenu.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  mobileMenu.addEventListener('touchmove', e => {
+    const touchX = e.touches[0].clientX;
+    if (startX - touchX > 50) { 
+      mobileMenu.classList.add('-translate-x-full');
+    }
+  });
+</script>
+{% endblock %}
+
+
+<!--efasepoifjpa-->
+
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto mt-10">
+    {% block content %}
+    <section id="home" class="my-10">
+        <h2 class="text-3xl font-bold">Home</h2>
+        <p>Welcome to acolheMID</p>
+    </section>
+
+    <section id="about" class="my-10">
+        <h2 class="text-2xl font-semibold">About</h2>
+        <p>Esta sección habla sobre el proyecto y el blog.</p>
+    </section>
+
+    <section id="contact" class="my-10">
+        <h2 class="text-2xl font-semibold">Contact</h2>
+        <p>Información de contacto o formulario de contacto.</p>
+   

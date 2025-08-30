@@ -1,1 +1,30 @@
-<h1>Welcome to acolheMID</h1>
+{% extends "home/base-home.html" %}
+
+{% block title %}acolheMID - Home{% endblock %}
+
+{% block content %}
+<section id="home" class="my-10">
+    <h2 class="text-3xl font-bold">Inicio</h2>
+    <p>Bienvenido a acolheMID, tu blog sobre la weed y un uso sano.</p>
+</section>
+
+<section id="us" class="my-10">
+    <h2 class="text-3xl font-semibold">Nosotros</h2>
+    <p>Esta sección habla sobre el proyecto, su propósito y cómo funciona.</p>
+</section>
+
+<section id="register" class="my-10">
+    <h2 class="text-3xl font-semibold">Registro</h2>
+    <p>Información de contacto o formulario de contacto.</p>
+</section>
+
+<section id="doctors" class="my-10">
+    <h2 class="text-3xl font-bold">Doctores</h2>
+    <p>Bienvenido a acolheMID, en esta sección encontrarás información sobre nuestros doctores.</p>
+</section>
+
+<section id="news" class="my-10">
+    <h2 class="text-3xl font-bold">Noticias</h2>
+    <p>Bienvenido a acolheMID, en esta sección encontrarás las últimas noticias sobre la weed y un uso sano.</p>
+</section>
+{% endblock %}
