@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1200" viewBox="0 0 1024 1200" role="img" aria-label="Lockup vertical">
+  <title>TuMarca — lockup vertical</title>
+  <rect width="1024" height="1200" fill="#ffffff"/>
+  <g transform="translate(0,40)">
+    <g transform="translate(0,0)">
+      <rect x="256" y="80" width="512" height="512" rx="120" fill="none" stroke="#14532d" stroke-width="28"/>
+      <g transform="translate(0,8)" fill="#14532d">
+        <path d="M512 200 C548 300,548 440,512 540 C476 440,476 300,512 200 Z"/>
+        <path d="M410 250 C438 320,438 460,410 520 C360 460,360 320,410 250 Z" transform="rotate(-12 410 385)"/>
+        <path d="M614 250 C642 320,642 460,614 520 C564 460,564 320,614 250 Z" transform="rotate(12 614 385)"/>
+        <rect x="500" y="540" width="40" height="70" rx="12"/>
+      </g>
+      <g transform="translate(0,24)" fill="#14532d">
+        <rect x="446" y="620" width="132" height="64" rx="16"/>
+        <rect x="482" y="680" width="60" height="112" rx="12"/>
+        <rect x="444" y="716" width="132" height="60" rx="12"/>
+      </g>
+    </g>
+  </g>
+  <text x="512" y="940" text-anchor="middle" font-family="Poppins, Inter, system-ui" font-size="120" font-weight="700" fill="#14532d">TuMarca</text>
+  <text x="512" y="1020" text-anchor="middle" font-family="Inter, system-ui" font-size="36" font-weight="500" fill="#14532d">Cannabis medicinal • Salud y cuidado</text>
+</svg>

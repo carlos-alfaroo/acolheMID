@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cannabis health icon">
+  <title>Cannabis health icon</title>
+  <rect width="1024" height="1024" rx="200" fill="#14532d"/>
+  <!-- rounded square outline -->
+  <rect x="128" y="128" width="768" height="768" rx="160" fill="none" stroke="#bbf7d0" stroke-width="32"/>
+  <!-- leaf group -->
+  <g transform="translate(0,20)" fill="#bbf7d0">
+    <!-- center leaf -->
+    <path d="M512 240 C560 360,560 520,512 640 C464 520,464 360,512 240 Z"/>
+    <!-- left leaf -->
+    <path d="M380 300 C420 380,420 540,380 610 C320 540,320 380,380 300 Z" transform="rotate(-18 380 455)"/>
+    <!-- right leaf -->
+    <path d="M644 300 C684 380,684 540,644 610 C584 540,584 380,644 300 Z" transform="rotate(18 644 455)"/>
+    <!-- stem -->
+    <rect x="496" y="636" width="32" height="88" rx="16" />
+  </g>
+  <!-- medical cross integrated footer -->
+  <g transform="translate(0,48)" fill="#bbf7d0">
+    <rect x="470" y="748" width="84" height="196" rx="16"/>
+    <rect x="402" y="816" width="220" height="60" rx="16"/>
+  </g>
+</svg>

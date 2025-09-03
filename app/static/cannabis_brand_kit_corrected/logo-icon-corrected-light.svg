@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="Icona: hoja y cruz médica (claro)">
+  <title>Hoja medicinal — icono (claro)</title>
+  <rect width="1024" height="1024" rx="200" fill="#ffffff"/>
+  <rect x="140" y="120" width="744" height="680" rx="140" fill="none" stroke="#14532d" stroke-width="36"/>
+  <g transform="translate(0,20)" fill="#14532d" stroke="none">
+    <path d="M512 240
+             C548 350,548 480,512 590
+             C476 480,476 350,512 240 Z"/>
+    <path d="M420 320
+             C450 380,450 500,420 560
+             C360 500,360 380,420 320 Z" transform="rotate(-12 390 420)"/>
+    <path d="M604 320
+             C634 380,634 500,604 560
+             C544 500,544 380,604 320 Z" transform="rotate(12 604 420)"/>
+    <rect x="500" y="580" width="40" height="64" rx="12"/>
+  </g>
+  <g fill="#14532d" transform="translate(0,28)">
+    <rect x="446" y="796" width="132" height="64" rx="16"/>
+    <rect x="482" y="856" width="60" height="112" rx="12"/>
+    <rect x="444" y="892" width="132" height="60" rx="12"/>
+  </g>
+</svg>
