@@ -1,0 +1,18 @@
+{% extends "home/base-home.html" %}
+
+{% block title %}acolheMID - Log In {% endblock %}
+
+{% block content %}
+  {% include "components/_flash_messages.html" %}
+  <br> <br><br> <br>
+   <h1 class="text-2xl font-bold mb-4">Welcome, {{ current_user.username }}!</h1>
+  <p>Email: {{ current_user.email }}</p>
+  <p>Role: {{ current_user.role }}</p>
+  <p>Last Login: {{ current_user.last_login }}</p>
+  <p>Account Created: {{ current_user.created_at }}</p>
+  <p>Last Logout: {{ current_user.last_logout }}</p>
+  <button type="submit" class="bg-red-100 text-white py-2 px-4 rounded-lg hover:bg-red-200 transition">
+    <a href="{{ url_for('auth.logout') }}" class="text-red-600 ">Logout</a>
+  </button>
+{% endblock %}
+{% block footer %} {% endblock %}

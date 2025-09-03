@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1200" viewBox="0 0 1024 1200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TuMarca stacked logo">
+  <rect width="1024" height="1200" fill="#ffffff"/>
+  <!-- Icon centered -->
+  <g transform="translate(0,40)">
+    <g transform="translate(0,0)" >
+      <rect x="256" y="80" width="512" height="512" rx="120" fill="none" stroke="#14532d" stroke-width="28"/>
+      <g transform="translate(0,-8)" fill="#14532d">
+        <path d="M512 200 C552 300,552 440,512 540 C472 440,472 300,512 200 Z"/>
+        <path d="M410 250 C444 320,444 460,410 520 C358 460,358 320,410 250 Z" transform="rotate(-18 410 385)"/>
+        <path d="M614 250 C648 320,648 460,614 520 C562 460,562 320,614 250 Z" transform="rotate(18 614 385)"/>
+        <rect x="496" y="540" width="32" height="70" rx="16" />
+      </g>
+      <g transform="translate(0,12)" fill="#14532d">
+        <rect x="486" y="620" width="60" height="150" rx="14"/>
+        <rect x="436" y="670" width="160" height="48" rx="14"/>
+      </g>
+    </g>
+  </g>
+  <text x="512" y="940" text-anchor="middle" font-family="Poppins, Inter, system-ui" font-size="120" font-weight="700" fill="#14532d">TuMarca</text>
+  <text x="512" y="1020" text-anchor="middle" font-family="Inter, system-ui" font-size="40" font-weight="500" fill="#14532d">Cannabis medicinal • Salud y cuidado</text>
+</svg>
