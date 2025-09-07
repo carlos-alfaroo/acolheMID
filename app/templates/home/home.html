@@ -3,28 +3,108 @@
 {% block title %}acolheMID - Home{% endblock %}
 
 {% block content %}
-<section id="home" class="my-10">
-    <h2 class="text-3xl font-bold">Inicio</h2>
-    <p>Bienvenido a acolheMID, tu blog sobre la weed y un uso sano.</p>
-</section>
 
-<section id="us" class="my-10">
-    <h2 class="text-3xl font-semibold">Nosotros</h2>
-    <p>Esta sección habla sobre el proyecto, su propósito y cómo funciona.</p>
-</section>
+<body class="bg-gray-50 text-gray-800">
 
-<section id="register" class="my-10">
-    <h2 class="text-3xl font-semibold">Registro</h2>
-    <p>Información de contacto o formulario de contacto.</p>
-</section>
+  <!-- HERO -->
+  <section id="home" class="bg-gradient-to-r from-green-400 via-green-500 to-green-600 py-28 rounded-xl text-center text-white shadow-lg">
+    <div class="container mx-auto text-center px-6">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-white drop-shadow-lg animate-fade-in-up">Bienvenido a Nuestro Blog</h1>
+      <p class="text-xl md:text-2xl mb-8 text-white animate-fade-in-up delay-100">Explora información crítica y educativa sobre la marihuana medicinal y lúdica</p>
+      <a href="#us" class="bg-white text-green-700 px-10 py-4 rounded-full font-semibold hover:bg-green-100 hover:scale-110 transition transform animate-bounce">Explora nuestro contenido</a>
+    </div>
+  </section>
 
-<section id="doctors" class="my-10">
-    <h2 class="text-3xl font-bold">Doctores</h2>
-    <p>Bienvenido a acolheMID, en esta sección encontrarás información sobre nuestros doctores.</p>
-</section>
+  <!-- ACERCA DE: Misión, Visión, Objetivos -->
+  <section id="us" class="py-28 bg-green-50">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-16 text-green-800 animate-fade-in-up">Acerca de Nosotros</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-green-100 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up">
+          <h3 class="text-2xl font-semibold mb-4 text-green-900">Misión</h3>
+          <p>Informar, educar y apoyar a la sociedad sobre el uso responsable de la marihuana.</p>
+        </div>
+        <div class="bg-green-100 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up delay-100">
+          <h3 class="text-2xl font-semibold mb-4 text-green-900">Visión</h3>
+          <p>Ser la plataforma de referencia sobre marihuana medicinal y lúdica, confiable y crítica.</p>
+        </div>
+        <div class="bg-green-100 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up delay-200">
+          <h3 class="text-2xl font-semibold mb-4 text-green-900">Objetivos</h3>
+          <p>Conectar a la comunidad, divulgar estudios y noticias de interés y generar conciencia crítica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="news" class="my-10">
-    <h2 class="text-3xl font-bold">Noticias</h2>
-    <p>Bienvenido a acolheMID, en esta sección encontrarás las últimas noticias sobre la weed y un uso sano.</p>
-</section>
+  <!-- ESTUDIOS DESTACADOS -->
+  <section class="py-28 bg-gradient-to-r from-green-100 via-green-200 to-green-300">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16 text-green-900 animate-fade-in-up">Estudios Destacados</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up">
+          <h3 class="font-semibold mb-2 text-green-700 text-xl">Estudio 1</h3>
+          <p class="mb-4">Resumen breve del estudio sobre efectos medicinales de la marihuana.</p>
+          <a href="#" class="text-green-600 font-semibold hover:underline">Leer más</a>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up delay-100">
+          <h3 class="font-semibold mb-2 text-green-700 text-xl">Estudio 2</h3>
+          <p class="mb-4">Resumen breve del estudio sobre efectos lúdicos y sociales.</p>
+          <a href="#" class="text-green-600 font-semibold hover:underline">Leer más</a>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up delay-200">
+          <h3 class="font-semibold mb-2 text-green-700 text-xl">Estudio 3</h3>
+          <p class="mb-4">Resumen breve del estudio sobre seguridad y regulación.</p>
+          <a href="#" class="text-green-600 font-semibold hover:underline">Leer más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="news" class="py-28 bg-green-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16 text-green-900 animate-fade-in-up">Noticias</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up">
+          <h3 class="font-semibold mb-2 text-green-700 text-xl">Noticia 1</h3>
+          <p class="mb-2 text-sm text-gray-500">Publicado: 7 de Septiembre 2025</p>
+          <p class="mb-4">Resumen breve de la noticia sobre legislación o eventos recientes.</p>
+          <a href="#" class="text-green-600 font-semibold hover:underline">Leer más</a>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up delay-100">
+          <h3 class="font-semibold mb-2 text-green-700 text-xl">Noticia 2</h3>
+          <p class="mb-2 text-sm text-gray-500">Publicado: 5 de Septiembre 2025</p>
+          <p class="mb-4">Resumen breve de la noticia sobre estudios o descubrimientos recientes.</p>
+          <a href="#" class="text-green-600 font-semibold hover:underline">Leer más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-28 bg-gradient-to-r from-green-600 via-green-700 to-green-800 text-white text-center">
+    <h2 class="text-4xl font-bold mb-6 animate-fade-in-up">Únete a Nuestra Comunidad</h2>
+    <p class="mb-6 animate-fade-in-up delay-100">Recibe actualizaciones, estudios y noticias directamente en tu correo</p>
+    <a href="#" class="bg-white text-green-700 px-10 py-4 rounded-full font-semibold hover:bg-green-100 hover:scale-110 transition transform animate-bounce">Suscribirse</a>
+  </section>
+
+
+  <!-- ANIMACIONES PERSONALIZADAS -->
+  <style>
+    @keyframes fade-in-up { 
+      0% { opacity: 0; transform: translateY(30px); } 
+      100% { opacity: 1; transform: translateY(0); } 
+    }
+    .animate-fade-in-up { animation: fade-in-up 1s ease forwards; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    @keyframes bounce { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-8px); } 
+    }
+    .animate-bounce { animation: bounce 1.5s infinite; }
+  </style>
+
+</body>
+
 {% endblock %}

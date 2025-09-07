@@ -1,0 +1,49 @@
+{% extends "home/base-home.html" %}
+
+{% block title %}Carrito - acolheMID{% endblock %}
+
+{% block content %}
+<main class="container mx-auto mt-28 px-6 text-center">
+
+  <!-- Sección principal -->
+  <section class="py-28 bg-green-50 rounded-xl shadow-lg animate-fade-in-up">
+    <h1 class="text-4xl md:text-5xl font-bold text-green-900 mb-6">Tu Carrito de Compras</h1>
+    <p class="text-lg md:text-xl text-green-800 mb-10">Aún no hay productos agregados. ¡Pero pronto podrás verlos aquí!</p>
+    
+    <!-- Icono del carrito -->
+    <div class="flex justify-center mb-10">
+      <img src="{{ url_for('static', filename='canabis.png') }}" 
+           alt="Carrito vacío" 
+           class="h-24 w-24 md:h-32 md:w-32 object-contain animate-bounce">
+    </div>
+
+    <!-- Botón para seguir comprando -->
+    <a href="{{ url_for('home.home') }}" 
+       class="bg-green-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-800 hover:scale-105 transition transform">
+       Seguir Explorando
+    </a>
+
+    <!-- Mensaje extra -->
+    <p class="mt-6 text-green-900 italic">¡Estamos trabajando para ti! Pronto podrás agregar productos y realizar compras.</p>
+  </section>
+
+</main><br><br><br> <!-- para que no se vea footer en la primera vista del carrito -->
+
+<!-- Animaciones personalizadas -->
+<style>
+  @keyframes fade-in-up { 
+    0% { opacity: 0; transform: translateY(30px); } 
+    100% { opacity: 1; transform: translateY(0); } 
+  }
+  .animate-fade-in-up { animation: fade-in-up 1s ease forwards; }
+
+  @keyframes bounce { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-10px); } 
+  }
+  .animate-bounce { animation: bounce 2s infinite; }
+</style>
+{% endblock %}
+
+
+
