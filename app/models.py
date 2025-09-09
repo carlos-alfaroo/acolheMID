@@ -20,7 +20,7 @@ class User(UserMixin, db.Model):
   password = db.Column(db.String(200), nullable=False)
   bio = db.Column(db.String(200))
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  rol = db.Column(db.String(20))
+  rol = db.Column(db.String(20), default="user")  # Roles: user, admin, editor
   #last_login = 
 
   posts = db.relationship('Post', back_populates='user', lazy=True)
@@ -31,6 +31,9 @@ class User(UserMixin, db.Model):
   
   def check_password(self, password):
     return check_password_hash(self.password, password)
+  
+  def has_rol(self, *roles):
+    return self.rol in roles
 
 class Post(UserMixin, db.Model):
   __tablename__ = 'posts'
