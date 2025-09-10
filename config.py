@@ -11,8 +11,7 @@ class Config:
   if uri and uri.startswith("postgres://"):
     # Render y Heroku usan postgres:// pero SQLAlchemy requiere postgresql://
     uri = uri.replace("postgres://", "postgresql://", 1)
-  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql+psycopg://")
-  #SQLALCHEMY_DATABASE_URI = uri or f"sqlite:///{os.path.join(BASE_DIR, 'instance', 'app.db')}"
+  SQLALCHEMY_DATABASE_URI = uri or f"sqlite:///{os.path.join(BASE_DIR, 'instance', 'app.db')}"
   
   SQLALCHEMY_TRACK_MODIFICATIONS = False
   
