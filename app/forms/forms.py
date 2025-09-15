@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, PasswordField, SelectField
+from wtforms import StringField, TextAreaField, SubmitField, PasswordField, SelectField, FloatField, IntegerField
 from flask_wtf.file import FileField, FileAllowed
-from wtforms.validators import DataRequired, Length, EqualTo, Email
+from wtforms.validators import DataRequired, Length, EqualTo, Email, NumberRange
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
@@ -32,3 +32,24 @@ class PostRol(FlaskForm):
         ('ceo', 'Ceo')
     ])
     submit = SubmitField('Actualizar Rol')
+    
+    
+    
+    
+    # class para agregar articulos al inventario
+class ProductForm(FlaskForm):
+    name = StringField('Product Name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    price = FloatField('Price', validators=[DataRequired(), NumberRange(min=0)])
+    stock = IntegerField('Stock', validators=[DataRequired(), NumberRange(min=0)])
+    category = StringField('Category', validators=[DataRequired()])
+    image = FileField('Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Images only!')])
+    submit = SubmitField('Add Product') 
+    
+class AddToCartForm(FlaskForm):
+    submit = SubmitField('Add to Cart')
+'''    
+class AddToInventoryForm(FlaskForm):
+    quantity = IntegerField('Quantity', validators=[DataRequired(), NumberRange(min=1)])
+    submit = SubmitField('Add to Inventory')
+'''       

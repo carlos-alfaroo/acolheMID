@@ -1,0 +1,44 @@
+{% extends "home/base-home.html" %}
+
+{% block title %}acolheMID - Log In {% endblock %}
+
+{% block content %}
+  {% include "components/_flash_messages.html" %}
+  <br> <br><br> <br>
+   <h1 class="text-2xl font-bold mb-4">Welcome, {{ current_user.username }}!</h1>
+  <p>Email: {{ current_user.email }}</p>
+  <p>Role: {{ current_user.rol }}</p>
+  <p>Last Login: {{ current_user.last_login }}</p>
+  <p>Account Created: {{ current_user.created_at }}</p>
+  <p>Last Logout: {{ current_user.last_logout }}</p>
+  <br><br>
+
+  {% if rol_form %}
+    <h2 class="text-xl font-semibold mb-4">Update Your Role</h2>
+
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-5 gap-10">
+          <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-3 hover:scale-105 animate-fade-in-up">  
+                  <form action="{{ url_for('auth.update_rol') }}" method="POST">
+                    {{ rol_form.hidden_tag() }}
+                    {{ rol_form.rol(class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500") }}
+                    {% for error in rol_form.errors %}
+                      <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                    {% endfor %}
+                    <button type="submit" 
+                              class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
+                        Ingresar
+                      </button>
+                  </form>
+          </div>
+        </div>
+    </div>
+  {% endif %}
+
+  <a href="{{ url_for('auth.logout') }}" 
+   class="bg-red-100 text-red-600 py-2 px-4 rounded-lg hover:bg-red-200 transition inline-block">
+   Logout
+  </a>
+
+{% endblock %}
+{% block footer %}{% endblock %}

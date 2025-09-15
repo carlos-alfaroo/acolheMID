@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
   bio = db.Column(db.String(200))
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   rol = db.Column(db.String(20), default="user")  # Roles: user, admin, editor
+  cart_items = db.relationship('CartItem', backref='users', lazy=True)
   #last_login = 
 
   posts = db.relationship('Post', back_populates='user', lazy=True)
@@ -71,6 +72,24 @@ class Label(UserMixin, db.Model):
 
   posts = db.relationship("Post", secondary=post_label, back_populates="labels")
 
+class Product(UserMixin, db.Model):
+  __tablename__ = 'products'
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(100), nullable=False)
+  description = db.Column(db.Text)
+  price = db.Column(db.Float, nullable=False)
+  stock = db.Column(db.Integer, default=0)
+  category = db.Column(db.String(50))
+  image = db.Column(db.String(200))  # URL or path to the image
+  
+  cart_items = db.relationship('CartItem', back_populates='product', lazy=True)
+  
+class CartItem(UserMixin, db.Model):
+  __tablename__ = 'cart_items'
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+  quantity = db.Column(db.Integer, default=1)
 
-
+  product = db.relationship('Product', back_populates='cart_items')
 

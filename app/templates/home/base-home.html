@@ -56,7 +56,17 @@
    
     <!-- Botones usuario y carrito siempre visibles -->
     <div class="flex space-x-4 z-50">
-      <!-- Usuario -->
+
+      <!-- Dashboard Admin -->
+      {% if current_user.is_authenticated and current_user.rol in ['admin', 'editor', 'ceo'] %}
+      <a href="{{ url_for('inventory.dashboard_admin') }}" aria-label="Panel de administración" class="p-2 rounded hover:bg-green-700 transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-white">
+          <path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3   z"/>
+        </svg>
+      </a>
+      {% endif %}
+
+      <!-- Botón de usuario -->
       <a href="{% if current_user.is_authenticated %}{{ url_for('auth.dashboard') }}{% else %}{{ url_for('auth.signup') }}{% endif %}" 
       id="user-btn" 
       class="p-2 rounded hover:bg-green-700 transition-colors duration-300" 
@@ -67,11 +77,13 @@
       </a>
 
       <!-- Carrito -->
-      <a href="{{ url_for('home.carrito') }}" aria-label="Carrito de compras" class="relative p-2 rounded hover:bg-green-700 transition-colors duration-300">
+      <a href="{% if current_user.is_authenticated %}{{ url_for('cart.view_cart') }}{% else %}{{ url_for('auth.signup') }}{% endif %}" aria-label="Carrito de compras" class="relative p-2 rounded hover:bg-green-700 transition-colors duration-300">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-white">
-          <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.82 14h8.36c.58 0 1.09-.39 1.26-.94l2.97-9.23A1 1 0 0019.41 3H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 13.37 5.48 14 6.63 14h1.19z"/>
+          <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zm-9.18-4h8.36c.58 0 1.09-.39 1.26-.94l2.97-9.23A1 1 0 0019.41 3H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 13.37 5.48 14 6.63 14h1.19z"/>
         </svg>
-        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">0</span>
+        {% if cart_count > 0 %}
+        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-1">{{ cart_count }}</span>
+        {% endif %}
       </a>
     </div>
 
@@ -89,7 +101,7 @@
     <li><a href="{{ url_for('home.home') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Inicio</a></li>
     <li><a href="{{ url_for('home.home') }}#us" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Nosotros</a></li>
     <li><a href="{{ url_for('auth.signup') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Registro</a></li>
-    <li><a href="#doctors" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Doctores</a></li>
+    <li><a href="{{ url_for('cart.shop') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Tienda</a></li>
     <li><a href="{{ url_for('home.home') }}#news" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Noticias</a></li>
   </ul>
 
@@ -99,7 +111,7 @@
       <li><a href="{{ url_for('home.home') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Inicio</a></li>
       <li><a href="{{ url_for('home.home') }}#us" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Nosotros</a></li>
       <li><a href="{{ url_for('auth.signup') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Registro</a></li>
-      <li><a href="{{ url_for('home.home') }}#doctors" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Doctores</a></li>
+      <li><a href="{{ url_for('cart.shop') }}" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Tienda</a></li>
       <li><a href="{{ url_for('home.home') }}#news" class="hover:underline hover:text-yellow-300 transition-colors duration-300">Noticias</a></li>
     </ul>
   </div>

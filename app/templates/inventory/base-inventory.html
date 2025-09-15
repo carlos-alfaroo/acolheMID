@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Inventario{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="//unpkg.com/alpinejs" defer></script> <!-- Necesario tener Alpine.js cargado en base-home para el modulo de flash messages -->
+
+</head>
+<body>
+    {% include "components/_flash_messages.html" %}
+    {% block header %}
+    <header class="bg-green-900 text-white fixed w-full top-0 z-50" role="banner">
+      <div class="flex items-center justify-between p-4">
+        <h1 class="text-lg font-bold">Inventario</h1>
+        <nav>
+          <a href="{{ url_for('inventory.add_product') }}" class="text-white hover:underline">Agregar Producto</a>
+        </nav>
+      </div>
+      
+
+
+    </header>
+    {% endblock %}
+  
+    <div class="container mx-auto">
+      
+        {% block content %}
+  
+
+        {% endblock %}
+    </div>
+    
+</body>
+</html>

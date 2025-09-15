@@ -1,0 +1,163 @@
+{% extends "home/base-home.html" %}
+
+{% block title %}acolheMID - Carrito{% endblock %}
+
+{% block content %}
+{% include "components/_flash_messages.html" %} 
+
+<br><br><br><br>
+
+<div class="container mx-auto px-4 mt-12">
+  <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-center">Tu Carrito</h1>
+
+  {% if cart_items %}
+    <!-- Versión en cards para móviles -->
+    <div class="sm:hidden space-y-4">
+      {% for item in cart_items %}
+        <div class="bg-white shadow-lg rounded-lg p-4">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-semibold">{{ item.product.name }}</span>
+            <span class="text-gray-600">${{ "%.2f"|format(item.product.price) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <form action="{{ url_for('cart.update_quantity', item_id=item.id) }}" method="post" class="flex items-center space-x-2">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button type="submit" name="action" value="decrease" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">-</button>
+              <span class="px-2">{{ item.quantity }}</span>
+              <button type="submit" name="action" value="increase" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">+</button>
+            </form>
+            <span class="font-semibold">${{ "%.2f"|format(item.product.price * item.quantity) }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Tabla solo para pantallas grandes -->
+    <div class="hidden sm:block bg-white shadow-lg rounded-lg p-6">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b border-gray-200">
+            <th class="py-2">Producto</th>
+            <th class="py-2 text-center">Cantidad</th>
+            <th class="py-2">Precio Unitario</th>
+            <th class="py-2">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+          <tr class="border-b border-gray-100">
+            <td class="py-2">{{ item.product.name }}</td>
+            <td class="py-2 text-center">
+              <form action="{{ url_for('cart.update_quantity', item_id=item.id) }}" method="post" class="flex items-center justify-center space-x-2">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" name="action" value="decrease" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">-</button>
+                <span class="px-2">{{ item.quantity }}</span>
+                <button type="submit" name="action" value="increase" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">+</button>
+              </form>
+            </td>
+            <td class="py-2">${{ "%.2f"|format(item.product.price) }}</td>
+            <td class="py-2 font-semibold">${{ "%.2f"|format(item.product.price * item.quantity) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total -->
+    <div class="text-right mt-4 text-lg sm:text-xl font-semibold">
+      Total: ${{ "%.2f"|format(total_price) }}
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="{{ url_for('cart.shop') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow text-center">
+        Seguir Comprando
+      </a>
+
+      <!-- Botón para pagar con tarjeta o Apple Pay -->
+            <div class="relative w-full sm:w-auto flex-1 flex justify-center items-center">
+        <button id="checkout-button"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg shadow w-full sm:w-auto overflow-hidden relative transition-transform duration-200"
+          type="button">
+          <span class="relative z-10">Pagar Ahora</span>
+        </button>
+        <!-- Gradient wave animation overlay -->
+        <!-- The animation is handled with ::before in CSS -->
+      </div>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+      const stripe = Stripe("{{ config['STRIPE_PUBLIC_KEY'] }}");
+
+      document.getElementById("checkout-button").addEventListener("click", function () {
+      fetch("{{ url_for('cart.create_checkout_session') }}", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token() }}"
+        }
+        })
+        .then(res => res.json())
+        .then(data => {
+        if (data.error) throw new Error(data.error);
+        return stripe.redirectToCheckout({ sessionId: data.id });
+      })
+    .catch(err => alert(err.message));
+      });
+      </script>
+      <style>
+        #checkout-button {
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.2s ease;
+        }
+        #checkout-button:hover {
+          transform: scale(1.05);
+        }
+        #checkout-button::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+          transform: rotate(45deg) translateX(-100%);
+          transition: transform 0.5s ease;
+          z-index: 1;
+          pointer-events: none;
+        }
+        #checkout-button:hover::before {
+          transform: rotate(45deg) translateX(100%);
+        }
+        #checkout-button:active {
+          transform: scale(0.95);
+        }
+      </style>
+    </div>
+  {% else %}
+    <p class="text-center text-gray-500">No tienes productos en tu carrito.</p>
+    <div class="text-center mt-6">
+      <a href="{{ url_for('cart.shop') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow">
+        Ir a la Tienda
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block footer %}{% endblock %}
