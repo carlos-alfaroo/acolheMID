@@ -4,3 +4,4 @@ app = create_app()
 print("DB URI:", app.config["SQLALCHEMY_DATABASE_URI"])
 if __name__ == "__main__":
   app.run()
+

@@ -1,0 +1,26 @@
+# Entorno virtual
+venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Carpeta de instancias y bases de datos locales
+instance/
+*.sqlite
+
+# Archivos de configuración local o secretos
+.env
+*.pem
+
+# Logs
+*.log
+
+# MacOS
+.DS_Store
+
+# VS Code
+.vscode/__pychache__/
+*.pyc
