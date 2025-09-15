@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from werkzeug.utils import secure_filename
 from app import db
 from app.forms.forms import SignUpForm, LoginForm, PostRol
-from app.models import User
+from app.models import User #, CartItem, Product?
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
 from app.utils.decorators import rol_required
@@ -61,6 +61,10 @@ def logout():
 @auth_bp.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
+  '''
+  if current_user.rol in ['admin', 'editor', 'ceo']:
+    return redirect(url_for('inventory.dashboard_admin'))
+  '''
   return render_template('dashboard.html')
 
 

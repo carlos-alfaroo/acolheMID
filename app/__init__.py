@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 from config import Config
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
+from sqlalchemy import func
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -25,18 +26,30 @@ def create_app(): #(config_class="config.Config")
   login_manager.login_view = 'auth.login'
 
   with app.app_context():
-    from app.models import User, Post, Comment, Label
+    from app.models import User, Post, Comment, Label, Product, CartItem
     db.create_all()
   
   @login_manager.user_loader
   def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Este context processor hace que `cart_count` esté disponible en todas las templates
+  @app.context_processor
+  def inject_cart_count():
+    if current_user.is_authenticated:
+      # Suma de cantidades de todos los productos en el carrito del usuario
+      cart_count = db.session.query(func.sum(CartItem.quantity)).filter_by(user_id=current_user.id).scalar() or 0
+    else:
+      cart_count = 0
+    return dict(cart_count=cart_count)
+
 
   # Importar y Registrar blueprints(rutas)
-  from app.routes import home_bp, auth_bp
+  from app.routes import home_bp, auth_bp, cart_bp, inventory_bp
   app.register_blueprint(home_bp)
   app.register_blueprint(auth_bp, url_prefix='/auth')
+  app.register_blueprint(cart_bp, url_prefix='/cart')
+  app.register_blueprint(inventory_bp, url_prefix='/inventory')
   
   from . import routes
   

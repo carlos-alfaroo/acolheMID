@@ -1,6 +1,7 @@
 # acolheMid/config.py
 import os
 
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
@@ -18,3 +19,8 @@ class Config:
   UPLOAD_FOLDER = os.path.join(BASE_DIR, "app", "static", "uploads")
   MAX_CONTENT_LENGTH = 2 * 1024 * 1024  # Max 2MB per img
   ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+  
+  # Configuración de Stripe
+  STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+  STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+
