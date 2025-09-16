@@ -6,6 +6,7 @@ from flask_wtf.csrf import CSRFProtect
 from config import Config
 from flask_login import LoginManager, current_user
 from sqlalchemy import func
+import cloudinary
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -20,6 +21,9 @@ def create_app(): #(config_class="config.Config")
   db.init_app(app)
   migrate.init_app(app, db)
   csrf.init_app(app)
+  
+  # Inicializar Cloudinary desde variable de entorno
+  cloudinary.config(cloudinary_url=app.config["CLOUDINARY_URL"])
   
   # Inicializar Flask-Login
   login_manager.init_app(app)

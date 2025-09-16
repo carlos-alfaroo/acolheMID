@@ -42,13 +42,22 @@ def add_to_cart(product_id):
   if form.validate_on_submit():
     cart_item = CartItem.query.filter_by(user_id=current_user.id, product_id=product.id).first()
     if cart_item:
-      cart_item.quantity += 1
+      if cart_item.quantity < product.stock:
+        cart_item.quantity += 1
+        db.session.commit()
+        product_name = product.name or "Producto"
+        flash(f"{product_name} agregado al carrito", "green")
+      else: 
+        flash(f"No hay más stock disponible de {product.name}", "red")
     else:
-      cart_item = CartItem(user_id=current_user.id, product_id=product.id, quantity=1)
-      db.session.add(cart_item)
-    db.session.commit()
-    product_name = product.name or "Producto"
-    flash(f'{product_name} agregado al carrito', 'green')
+      if product.stock > 0:
+        cart_item = CartItem(user_id=current_user.id, product_id=product.id, quantity=1)
+        db.session.add(cart_item)
+        db.session.commit()
+        product_name = product.name or "Producto"
+        flash(f"{product_name} agregado al carrito", "green")
+      else:
+        flash(f"{product.name} está agotado", "red")
   else:
     flash('Error al agregar al carrito', 'red')
 
@@ -72,7 +81,10 @@ def update_quantity(item_id):
   action = request.form.get('action')
   
   if action == 'increase':
-    item.quantity += 1
+    if item.quantity < item.product.stock:
+      item.quantity += 1
+    else:
+      flash("No hay más unidades disponibles", "red")
   elif action == 'decrease':
     item.quantity -= 1
     if item.quantity <= 0:
@@ -94,6 +106,10 @@ def create_checkout_session():
 
     if not cart_items:
         return jsonify({'error': 'No hay productos en el carrito'}), 400
+
+    for item in cart_items:
+      if item.quantity > item.product.stock:
+        return jsonify({'error': f'No hay suficiente stock para el producto {item.product.name}'}), 400
 
     line_items = []
     for item in cart_items:
@@ -122,9 +138,20 @@ def create_checkout_session():
 @cart_bp.route('/success')
 @login_required
 def success():
-  flash('Pago exitoso ✅! Gracias por tu compra.', 'green')
+  cart_items = CartItem.query.filter_by(user_id=current_user.id).all()
+  
+  for item in cart_items:
+    if item.product.stock >= item.quantity:
+      item.product.stock -= item.quantity
+    else:
+      flash(f"Erro: stock insuficiente para {item.product.name}", "red")
+      return redirect(url_for('cart.view_cart'))
+    
+  # Vaciar carrito después de actualizar inventario
   CartItem.query.filter_by(user_id=current_user.id).delete()
   db.session.commit()
+  
+  flash('Pago exitoso ✅! Gracias por tu compra.', 'green')
   return render_template('success.html')
 
 @cart_bp.route('/cancel')
