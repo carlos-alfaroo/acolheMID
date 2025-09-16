@@ -1,20 +1,13 @@
 {% extends "inventory/base-inventory.html" %}
-
 {% block title %}Agregar Producto{% endblock %}
 
 {% block content %}
-<br><br><br><br><br>
-
-
-
-
-
 
 <div class="min-h-screen bg-gray-100 flex flex-col">
   <!-- Header tipo dashboard -->
   <header class="bg-white shadow p-4 flex items-center justify-between">
     <h1 class="text-2xl font-bold text-gray-800">Dashboard: Inventario</h1>
-    <a href="{{ url_for('cart.view_cart') }}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">
+    <a href="{{ url_for('inventory.products_inventory') }}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">
       Volver a Productos
     </a>
   </header>

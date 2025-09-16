@@ -2,40 +2,15 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
-<br><br><br><br><br>
 
 <div class="flex h-screen bg-gray-100">
 
-      <!-- Sidebar -->
-  <aside class="w-64 bg-white shadow-md">
-    <div class="p-6 text-center font-bold text-xl border-b">Admin Panel</div>
-    <nav class="mt-6">
-      <a href="" class="block py-2 px-6 hover:bg-gray-200 rounded">Productos</a>
-      <a href="{{ url_for('inventory.add_product') }}" class="block py-2 px-6 hover:bg-gray-200 rounded">Agregar Producto</a>
-      <a href="" class="block py-2 px-6 hover:bg-gray-200 rounded">Categorías</a>
-      <a href="" class="block py-2 px-6 hover:bg-gray-200 rounded">Pedidos</a>
-      <a href="{{url_for('auth.dashboard_db')}}" class="block py-2 px-6 hover:bg-gray-200 rounded">Usuarios</a>
-      <a href="" class="block py-2 px-6 hover:bg-gray-200 rounded">Reportes</a>
-      <a href=" " class="block py-2 px-6 hover:bg-gray-200 rounded">Configuración</a>
-      <a href=" " class="block py-2 px-6 hover:bg-gray-200 rounded">Volver al Dashboard</a>
-      <a href="{{url_for('auth.logout')}}" class="block py-2 px-6 hover:bg-gray-200 rounded">Cerrar Sesión</a>
-    </nav>
-  </aside>
+  
 
   <!-- Contenido principal -->
   <main class="flex-1 p-8 overflow-y-auto">
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold">Dashboard</h1>
-      <div class="relative">
-        <a href="{{ url_for('cart.view_cart') }}" class="text-gray-700 hover:text-gray-900">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 5m0 0h13.8m-13.8 0L6 21m13.8-8l1.4 5" />
-          </svg>
-          {% if cart_count > 0 %}
-          <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 text-xs">{{ cart_count }}</span>
-          {% endif %}
-        </a>
-      </div>
     </div>
 
     <!-- Aquí va contenido dinámico -->
@@ -44,15 +19,23 @@
       <!-- Ejemplo de tarjetas de info -->
       <div class="bg-white shadow rounded p-6">
         <h2 class="font-bold text-xl mb-2">Productos Totales</h2>
-        <p class="text-red-600 text-3xl">{{ total_products }}</p>
+        <p class="text-green-600 text-3xl">{{ products|length }}</p>
       </div>
       <div class="bg-white shadow rounded p-6">
         <h2 class="font-bold text-xl mb-2">Pedidos Pendientes</h2>
-        <p class="text-gray-600 text-3xl">{{ pending_orders }}</p>
+        <p class="text-green-600 text-3xl">{{ pending_orders }}</p>
       </div>
       <div class="bg-white shadow rounded p-6">
         <h2 class="font-bold text-xl mb-2">Usuarios Registrados</h2>
-        <p class="text-gray-600 text-3xl">{{ total_users }}</p>
+        <p class="text-green-600 text-3xl">{{ total_users }}</p>
+      </div>
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="font-bold text-xl mb-2">Reportes</h2>
+        <p class="text-green-600 text-3xl">{{ total_reports }}</p>
+      </div>
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="font-bold text-xl mb-2">Mensajes</h2>
+        <p class="text-green-600 text-3xl">{{ total_users }}</p>
       </div>
       {% endblock %}
     </div>

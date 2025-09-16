@@ -24,3 +24,5 @@ class Config:
   STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
   STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 
+  # Configuracion de Cloudinary para el upload de fotos
+  CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")

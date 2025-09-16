@@ -88,10 +88,3 @@ def update_rol():
 def new_post():
   # Aquí iría la lógica para crear un nuevo post
   return '<h1>New Post Page - Under Construction</h1>'
-
-@auth_bp.route('/dashboard/db', methods=['GET'])
-@login_required
-@rol_required('ceo')
-def dashboard_db():
-  users = User.query.all()
-  return render_template('dashboard_db.html', users=users)
