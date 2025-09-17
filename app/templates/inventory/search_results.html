@@ -8,7 +8,7 @@
       {% for product in results %}
         <div class="bg-white rounded shadow p-4">
           {% if product.image %}
-            <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}" 
+            <img src="{{ product.image }}" 
                  alt="{{ product.name }}" class="w-full h-40 object-cover mb-2 rounded">
           {% endif %}
           <h3 class="font-semibold">{{ product.name }}</h3>

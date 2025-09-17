@@ -64,7 +64,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700">Imagen actual</label>
           {% if product.image %}
-            <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}" 
+            <img src="{{ product.image }}" 
                  alt="{{ product.name }}" class="w-32 h-32 object-cover rounded mt-2 mb-4 border border-gray-200">
           {% else %}
             <p class="mt-2 text-gray-500">Sin imagen</p>
