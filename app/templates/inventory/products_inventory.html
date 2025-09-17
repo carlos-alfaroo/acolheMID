@@ -25,7 +25,7 @@
         <tr class="border-t hover:bg-gray-50">
           <td class="px-4 py-2">
             {% if product.image %}
-              <img src="{{ url_for('static', filename='uploads/' ~ product.image) }}" 
+              <img src="{{ product.image }}" alt="{{ product.name}}" 
                    class="w-16 h-16 object-cover rounded">
             {% else %}
               <span class="text-gray-400">Sin imagen</span>
